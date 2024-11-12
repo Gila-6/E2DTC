@@ -50,7 +50,7 @@ def train(args):
     # load model state and optmizer state
     if os.path.isfile(args.checkpoint):
         print("=> loading checkpoint '{}'".format(args.checkpoint))
-        checkpoint = torch.load(args.checkpoint)
+        checkpoint = torch.load(args.checkpoint,map_location='cuda:0')
         start_epoch = checkpoint["epoch"] + 1
         iteration = checkpoint["iteration"] + 1
         dtc.load_state_dict(checkpoint["dtc"])

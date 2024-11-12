@@ -44,7 +44,7 @@ def pad_arrays(a):
     '''
     max_length = max(map(len, a))
     a = [pad_array(a[i], max_length) for i in range(len(a))]
-    a = np.stack(a).astype(np.int)
+    a = np.stack(a).astype(int)
     return torch.LongTensor(a)
 
 

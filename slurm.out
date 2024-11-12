@@ -1,0 +1,153 @@
+/home/zzhangjf/E2DTC/losses.py:49: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:278.)
+  V, D = torch.LongTensor(V), torch.FloatTensor(D)
+/home/zzhangjf/E2DTC/pretrain.py:75: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  pretrain_checkpoint = torch.load(args.pretrain_checkpoint,map_location='cuda:0')
+/home/zzhangjf/E2DTC/cluster.py:14: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  cluster_center = torch.load(args.cluster_center)
+data =  ./data
+src_file =  ./data/trj_vocab.h5
+label_file =  ./data/labels.pkl
+model =  ./model
+pretrain_checkpoint =  ./model/pretrain_checkpoint.pt
+cluster_center =  ./model/cluster_center.pt
+checkpoint =  ./model/checkpoint.pt
+n_clusters =  12
+num_layers =  3
+bidirectional =  True
+hidden_size =  256
+embedding_size =  256
+dropout =  0.2
+max_grad_norm =  5.0
+learning_rate =  0.001
+gamma =  0.1
+beta =  0.1
+cuda =  0
+gen_batch =  32
+batch =  256
+pretrain_epoch =  20.0
+epoch =  20
+tolerance =  0.0001
+update_interval =  1
+print_freq =  100
+save_freq =  1000
+knearestvocabs =  data/geolife-vocab-dist-cell300.h5
+dist_decay_speed =  0.8
+max_length =  200
+vocab_size =  1319
+------- start training -------
+=> loading pretrain checkpoint './model/pretrain_checkpoint.pt'
+=> Reading training data...
+Loaded data,training data size  73196
+=> Loaded validation data size 12916
+=> Iteration starts at 5718 and will end at 5717
+------- Pretrain model finished -------
+=> Loading cluster center checkpoint './model/cluster_center.pt'
+=> No checkpoint found at './model/checkpoint.pt'
+=> Reading trajecoty data...
+=> Epoch starts at 0 and will end at 19
+Epoch 0	Acc: 0.9127	nmi: 0.8619	ari: 0.8221
+Iteration: 0	Loss: 50.137	Rc Loss: 50.038	KL Loss: 0.985	Triplet Loss: 0.0000
+Iteration: 100	Loss: 15.949	Rc Loss: 15.865	KL Loss: 0.832	Triplet Loss: 0.0000
+Iteration: 200	Loss: 8.701	Rc Loss: 8.607	KL Loss: 0.939	Triplet Loss: 0.0020
+Iteration: 300	Loss: 3.601	Rc Loss: 3.513	KL Loss: 0.878	Triplet Loss: 0.0093
+Epoch 1	Acc: 0.8973	nmi: 0.8367	ari: 0.7900
+Iteration: 400	Loss: 1.364	Rc Loss: 1.303	KL Loss: 0.580	Triplet Loss: 0.0231
+Iteration: 500	Loss: 1.102	Rc Loss: 1.048	KL Loss: 0.521	Triplet Loss: 0.0181
+Iteration: 600	Loss: 0.296	Rc Loss: 0.243	KL Loss: 0.514	Triplet Loss: 0.0092
+Epoch 2	Acc: 0.9046	nmi: 0.8450	ari: 0.8048
+Iteration: 700	Loss: -0.048	Rc Loss: -0.086	KL Loss: 0.385	Triplet Loss: 0.0043
+Iteration: 800	Loss: -0.538	Rc Loss: -0.582	KL Loss: 0.437	Triplet Loss: 0.0089
+Iteration: 900	Loss: -0.669	Rc Loss: -0.717	KL Loss: 0.461	Triplet Loss: 0.0166
+Iteration: 1000	Loss: -1.032	Rc Loss: -1.076	KL Loss: 0.423	Triplet Loss: 0.0212
+Epoch 3	Acc: 0.9034	nmi: 0.8431	ari: 0.8020
+Iteration: 1100	Loss: -0.807	Rc Loss: -0.840	KL Loss: 0.335	Triplet Loss: 0.0013
+Iteration: 1200	Loss: -1.213	Rc Loss: -1.250	KL Loss: 0.359	Triplet Loss: 0.0123
+Iteration: 1300	Loss: -1.228	Rc Loss: -1.264	KL Loss: 0.360	Triplet Loss: 0.0000
+Epoch 4	Acc: 0.8974	nmi: 0.8357	ari: 0.7893
+Iteration: 1400	Loss: -0.919	Rc Loss: -0.951	KL Loss: 0.313	Triplet Loss: 0.0011
+Iteration: 1500	Loss: -0.890	Rc Loss: -0.922	KL Loss: 0.314	Triplet Loss: 0.0026
+Iteration: 1600	Loss: -1.121	Rc Loss: -1.152	KL Loss: 0.301	Triplet Loss: 0.0132
+Epoch 5	Acc: 0.8942	nmi: 0.8301	ari: 0.7834
+Iteration: 1700	Loss: -0.916	Rc Loss: -0.947	KL Loss: 0.288	Triplet Loss: 0.0209
+Iteration: 1800	Loss: -1.290	Rc Loss: -1.321	KL Loss: 0.299	Triplet Loss: 0.0144
+Iteration: 1900	Loss: -1.307	Rc Loss: -1.338	KL Loss: 0.300	Triplet Loss: 0.0101
+Iteration: 2000	Loss: -1.469	Rc Loss: -1.499	KL Loss: 0.286	Triplet Loss: 0.0133
+=================
+Best Epoch 0	Acc: 0.9127	nmi: 0.8619	ari: 0.8221
+/home/zzhangjf/E2DTC/losses.py:49: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:278.)
+  V, D = torch.LongTensor(V), torch.FloatTensor(D)
+/home/zzhangjf/E2DTC/pretrain.py:75: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  pretrain_checkpoint = torch.load(args.pretrain_checkpoint,map_location='cuda:0')
+/home/zzhangjf/E2DTC/cluster.py:14: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  cluster_center = torch.load(args.cluster_center)
+/home/zzhangjf/E2DTC/train.py:53: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(args.checkpoint,map_location='cuda:0')
+data =  ./data
+src_file =  ./data/trj_vocab.h5
+label_file =  ./data/labels.pkl
+model =  ./model
+pretrain_checkpoint =  ./model/pretrain_checkpoint.pt
+cluster_center =  ./model/cluster_center.pt
+checkpoint =  ./model/checkpoint.pt
+n_clusters =  12
+num_layers =  3
+bidirectional =  True
+hidden_size =  256
+embedding_size =  256
+dropout =  0.2
+max_grad_norm =  5.0
+learning_rate =  0.001
+gamma =  0.1
+beta =  0.1
+cuda =  0
+gen_batch =  32
+batch =  256
+pretrain_epoch =  20.0
+epoch =  20
+tolerance =  0.0001
+update_interval =  1
+print_freq =  100
+save_freq =  1000
+knearestvocabs =  data/geolife-vocab-dist-cell300.h5
+dist_decay_speed =  0.8
+max_length =  200
+vocab_size =  1319
+------- start training -------
+=> loading pretrain checkpoint './model/pretrain_checkpoint.pt'
+=> Reading training data...
+Loaded data,training data size  73196
+=> Loaded validation data size 12916
+=> Iteration starts at 5718 and will end at 5717
+------- Pretrain model finished -------
+=> Loading cluster center checkpoint './model/cluster_center.pt'
+=> loading checkpoint './model/checkpoint.pt'
+=> Reading trajecoty data...
+=> Epoch starts at 6 and will end at 19
+Epoch 6	Acc: 0.8913	nmi: 0.8267	ari: 0.7776
+Iteration: 2100	Loss: -1.214	Rc Loss: -1.242	KL Loss: 0.271	Triplet Loss: 0.0091
+Iteration: 2200	Loss: -1.372	Rc Loss: -1.401	KL Loss: 0.270	Triplet Loss: 0.0165
+Iteration: 2300	Loss: -1.432	Rc Loss: -1.460	KL Loss: 0.253	Triplet Loss: 0.0266
+Epoch 7	Acc: 0.8891	nmi: 0.8216	ari: 0.7730
+Iteration: 2400	Loss: -1.390	Rc Loss: -1.414	KL Loss: 0.232	Triplet Loss: 0.0115
+Iteration: 2500	Loss: -0.970	Rc Loss: -0.995	KL Loss: 0.235	Triplet Loss: 0.0156
+Iteration: 2600	Loss: -1.569	Rc Loss: -1.594	KL Loss: 0.242	Triplet Loss: 0.0052
+Epoch 8	Acc: 0.8847	nmi: 0.8171	ari: 0.7654
+Iteration: 2700	Loss: -1.380	Rc Loss: -1.405	KL Loss: 0.247	Triplet Loss: 0.0084
+Iteration: 2800	Loss: -1.501	Rc Loss: -1.525	KL Loss: 0.231	Triplet Loss: 0.0108
+Iteration: 2900	Loss: -1.477	Rc Loss: -1.500	KL Loss: 0.231	Triplet Loss: 0.0036
+Iteration: 3000	Loss: -1.356	Rc Loss: -1.379	KL Loss: 0.222	Triplet Loss: 0.0101
+Epoch 9	Acc: 0.8815	nmi: 0.8096	ari: 0.7588
+Iteration: 3100	Loss: -1.295	Rc Loss: -1.321	KL Loss: 0.229	Triplet Loss: 0.0250
+Iteration: 3200	Loss: -1.441	Rc Loss: -1.466	KL Loss: 0.210	Triplet Loss: 0.0433
+Iteration: 3300	Loss: -1.501	Rc Loss: -1.524	KL Loss: 0.215	Triplet Loss: 0.0128
+Epoch 10	Acc: 0.8833	nmi: 0.8138	ari: 0.7610
+Iteration: 3400	Loss: -1.481	Rc Loss: -1.504	KL Loss: 0.193	Triplet Loss: 0.0370
+Iteration: 3500	Loss: -1.346	Rc Loss: -1.368	KL Loss: 0.210	Triplet Loss: 0.0088
+Iteration: 3600	Loss: -1.432	Rc Loss: -1.455	KL Loss: 0.209	Triplet Loss: 0.0269
+Epoch 11	Acc: 0.8786	nmi: 0.8072	ari: 0.7517
+Iteration: 3700	Loss: -1.536	Rc Loss: -1.556	KL Loss: 0.196	Triplet Loss: 0.0029
+Iteration: 3800	Loss: -1.409	Rc Loss: -1.430	KL Loss: 0.192	Triplet Loss: 0.0102
+Iteration: 3900	Loss: -1.506	Rc Loss: -1.528	KL Loss: 0.203	Triplet Loss: 0.0209
+Iteration: 4000	Loss: -1.547	Rc Loss: -1.571	KL Loss: 0.203	Triplet Loss: 0.0270
+=================
+Best Epoch 6	Acc: 0.8913	nmi: 0.8267	ari: 0.7776
